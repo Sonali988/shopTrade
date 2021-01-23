@@ -14,11 +14,25 @@
 .photo-container ul img {
   width: 80%;
   transform: scale(1);
-  transition: transform 1.25s;
+  /* transition: transform 1.25s; */
 }
 
 .photo-container li:hover img {
-  transform: scale(1.15);
+  /* transform: scale(1.15); */
+}
+
+.variant-value {
+  display: inline;
+  color: #878787;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 18px;
+  padding-right: 5px;
+}
+
+.variant-wrap {
+  line-height: 1.75px;
 }
 
 .breadcrumb-title {
@@ -37,7 +51,7 @@
   text-align: left;
 }
 .all-product-count {
-  font-weight: 300;
+  font-weight: 200;
   color: #878787;
 }
 
@@ -65,7 +79,23 @@ p.title {
   line-height: 16px;
 }
 .heading-margin {
-  margin: 10px 40px;
+  margin: 14px 40px;
+}
+
+.promotional-wrap {
+  padding: 10px;
+  background: linear-gradient(90.06deg, #181716 0%, #ED4E08 99.97%);
+}
+
+.invite {
+  background-color: #FFFFFF;
+  padding: 4px !important;
+}
+span.promotional-bar {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: white;
 }
 
 .breadcrumb-wrap {
@@ -191,8 +221,9 @@ h3.vendor {
   border: none;
   outline: none;
   color: black;
+  display: flex;
   font-weight: 400;
-  padding: 14px 16px;
+  padding: 20px 16px;
   font-family: 'Roboto', sans-serif;
   margin: 0;
 }

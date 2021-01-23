@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import _ from "lodash";
-import { MenuItem, Select } from '@material-ui/core';
+import { Button, MenuItem, Select } from '@material-ui/core';
+import { ALL_PRODUCTS, FILTERS, PRODUCTS, ADD_TO_CART } from '../utilities/Constants';
 
 const ProductList = () => {
   const [productList, setProductList] = useState([]);
+  const [showVariant, setShowVariant] = useState(false);
+  const [addToCart, setShowAddToCart] = useState(false);
 
   useEffect(() => {
     getProducts()
@@ -19,14 +22,23 @@ const ProductList = () => {
 
   const filter = (selectedTag) => setProductList(_.filter(productList, product => product.tag === selectedTag));
   const sort = (value) => setProductList(_.sortBy(productList, value));
+  const showVariantHandle = (id) => {
+    _.map(productList, (product) => {
+      if (product.id === id) {
+        setShowVariant(!showVariant)
+      }
+    }
+    )
+  }
+  const showAddToCart = () => setShowAddToCart(!addToCart);
 
   return (
     <div>
       <div className="photo-container">
-        <span className="all-product-text heading-margin">All Products <span className="all-product-count"> ({productList.length} Products)</span> </span>
+        <span className="all-product-text heading-margin">{ALL_PRODUCTS} <span className="all-product-count"> ({productList.length} {PRODUCTS})</span> </span>
         <div className="filter-heading-margin heading-margin">
-          <span className="filter-text">FILTERS : </span>
-          <span className="filter-allproduct-option filter-allproduct-option-text" onClick={getProducts}>All Products</span>
+          <span className="filter-text">{FILTERS} : </span>
+          <span className="filter-allproduct-option filter-allproduct-option-text" onClick={getProducts}>{ALL_PRODUCTS}</span>
           <span className="filter-option">
 
             {_.map(_.uniqBy(productList, 'tag'),
@@ -51,7 +63,12 @@ const ProductList = () => {
             <li key={product.id}>
               <img
                 src={product.image_src[0]}
-                alt={product.image_src[0]} />
+                alt={product.name} onMouseEnter={() => showVariantHandle(product.id)} onClick={showAddToCart} />
+
+              {showVariant && <div className="variant-wrap"> <p className="variant-title percentage">{product.options[0].name} </p>
+                {_.map(product.options, (variant) => <p className="variant-value" key={variant.id}>{variant.value} </p>)}
+              </div>}
+
               <h3 className="vendor">{product.vendor}</h3>
               <p className="title">{product.name}</p>
               <div className="price-wrap">
@@ -59,6 +76,7 @@ const ProductList = () => {
                 <del className="compared-price">{product.compare_at_price}</del>
                 <p className="compared-price percentage">({((100 * (Number(product.compare_at_price) - Number(product.price))) / Number(product.compare_at_price)).toFixed(0)}% OFF)</p>
               </div>
+              {addToCart && <Button variant="contained" color="primary" className="add-to-cart">{ADD_TO_CART}</Button>}
             </li>
           )}
         </ul>

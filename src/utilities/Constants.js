@@ -1,0 +1,14 @@
+export const PROMOTIONAL_TEXT = "Invite friends to Big Fashion Festival & get up to $150 MynCash for every person who visits";
+export const SHOP = "Shop";
+export const ABOUT_US = "About Us";
+export const OUR_STORES = "Our Stores";
+export const CONTACT_US = "Contact Us";
+export const LINK_1 = "Link 1";
+export const LINK_2 = "Link 2";
+export const LINK_3 = "Link 3";
+export const SEARCH = "Search";
+export const ALL_PRODUCTS = "All Products ";
+export const FILTERS = "Filters";
+export const PRODUCTS = "Products";
+export const ADD_TO_CART = "Add To Cart"
+export const INVITE = "Invite Now";
